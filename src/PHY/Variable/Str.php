@@ -149,9 +149,9 @@
         /**
          * {@inheritDoc}
          */
-        public function toArray()
+        public function toArr()
         {
-            return $this->split();
+            return new \PHY\Variable\Arr($this->split());
         }
 
         /**

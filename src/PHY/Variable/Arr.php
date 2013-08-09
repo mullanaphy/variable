@@ -31,6 +31,22 @@
         /**
          * {@inheritDoc}
          */
+        public function toObj()
+        {
+            $array = $this->get();
+            foreach ($array as $key => $value) {
+                if (is_array($value)) {
+                    $array[$key] = (new \PHY\Variable\Arr($value))->toObj();
+                }
+            }
+            return new \PHY\Variable\Obj((object)$array);
+        }
+
+        /**
+         * Recursively convert our array into a stdClass.
+         *
+         * @return \stdClass
+         */
         public function toObject()
         {
             $array = $this->get();
@@ -45,9 +61,9 @@
         /**
          * {@inheritDoc}
          */
-        public function toString()
+        public function toStr()
         {
-            return json_encode($this->get());
+            return new \PHY\Variable\Str(json_encode($this->get()));
         }
 
         /**
@@ -55,7 +71,7 @@
          */
         public function toInt()
         {
-            return (int)$this->count();
+            return new \PHY\Variable\Int((int)$this->count());
         }
 
         /**
@@ -63,7 +79,7 @@
          */
         public function toFloat()
         {
-            return (float)$this->count();
+            return new \PHY\Variable\Float((float)$this->count());
         }
 
         /**
@@ -71,7 +87,7 @@
          */
         public function toBool()
         {
-            return !empty($this->get());
+            return new \PHY\Variable\Bool(!empty($this->get()));
         }
 
         /**

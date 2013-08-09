@@ -52,9 +52,11 @@
          *
          * @param mixed $value
          */
-        public function __construct($value)
+        public function __construct($value = null)
         {
-            $this->set($value);
+            if(null !== $value) {
+                $this->set($value);
+            }
         }
 
         /**
@@ -160,6 +162,12 @@
             return $this;
         }
 
+        /**
+         * Validate a variables type to make sure our class can use it.
+         * 
+         * @param string $value
+         * @throws Exception
+         */
         public function validate($value)
         {
             if (!in_array(gettype($value), $this->types)) {
@@ -170,61 +178,61 @@
         /**
          * Translate this item to a string.
          *
-         * @return string
+         * @return \PHY\Variable\String
          */
-        public function toString()
+        public function toStr()
         {
-            return (string)$this->get();
+            return new \PHY\Variable\Str((string)$this->get());
         }
 
         /**
          * Translate this item to an array.
          *
-         * @return array
+         * @return \PHY\Variable\Arr
          */
-        public function toArray()
+        public function toArr()
         {
-            return (array)$this->get();
+            return new \PHY\Variable\Arr((array)$this->get());
         }
 
         /**
          * Translate this item to a stdClass.
          *
-         * @return stdClass
+         * @return \PHY\Variable\Obj
          */
-        public function toObject()
+        public function toObj()
         {
-            return (object)$this->get();
+            return new \PHY\Variable\Obj((object)$this->get());
         }
 
         /**
          * Translate this item to a float.
          *
-         * @return float
+         * @return \PHY\Variable\Float
          */
         public function toFloat()
         {
-            return (float)$this->get();
+            return new \PHY\Variable\Float((float)$this->get());
         }
 
         /**
          * Translate this item to an int.
          *
-         * @return int
+         * @return \PHY\Variable\Int
          */
         public function toInt()
         {
-            return (int)$this->get();
+            return new \PHY\Variable\Int((int)$this->get());
         }
 
         /**
          * Translate this item to a bool.
          *
-         * @return bool
+         * @return \PHY\Variable\Bool
          */
         public function toBool()
         {
-            return (bool)$this->get();
+            return new \PHY\Variable\Bool((bool)$this->get());
         }
 
     }

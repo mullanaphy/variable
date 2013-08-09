@@ -33,7 +33,7 @@
          *
          * @param \stdClass $value
          */
-        public function __construct($value)
+        public function __construct($value = null)
         {
             $this->original = new \stdClass;
             $this->current = new \stdClass;
@@ -68,13 +68,30 @@
         /**
          * {@inheritDoc}
          */
+        public function toArr()
+        {
+            $class = $this->get();
+            $class = new \PHY\Variable\Arr((array)$class);
+            foreach ($class as $key => $value) {
+                if (is_object($value)) {
+                    $class[$key] = (new static($value))->toArr();
+                }
+            }
+            return $class;
+        }
+
+        /**
+         * Recursively convert our object into an array.
+         *
+         * @return array
+         */
         public function toArray()
         {
             $class = $this->get();
             $class = (array)$class;
             foreach ($class as $key => $value) {
                 if (is_object($value)) {
-                    $class[$key] = (new static($value))->toArray();
+                    $class[$key] = (new static($value))->toArr();
                 }
             }
             return $class;
@@ -83,9 +100,9 @@
         /**
          * {@inheritDoc}
          */
-        public function toString()
+        public function toStr()
         {
-            return json_encode($this->get());
+            return new \PHY\Variable\Str(json_encode($this->get()));
         }
 
     }

@@ -54,7 +54,7 @@
          *
          * @return array
          */
-        public function toArray()
+        public function toArr()
         {
             return [];
         }
@@ -74,7 +74,7 @@
          *
          * @return \stdClass
          */
-        public function toObject()
+        public function toObj()
         {
             return new \stdClass();
         }
@@ -84,7 +84,7 @@
          *
          * @return string
          */
-        public function toString()
+        public function toStr()
         {
             return '';
         }
