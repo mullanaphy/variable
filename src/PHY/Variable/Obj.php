@@ -91,7 +91,7 @@
             $class = (array)$class;
             foreach ($class as $key => $value) {
                 if (is_object($value)) {
-                    $class[$key] = (new static($value))->toArr();
+                    $class[$key] = (new static($value))->toArray();
                 }
             }
             return $class;
