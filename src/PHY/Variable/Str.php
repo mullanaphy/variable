@@ -19,7 +19,7 @@
      * @license http://www.wtfpl.net/
      * @author John Mullanaphy <john@jo.mu>
      */
-    class Str extends PHY\Variable\AVar
+    class Str extends \PHY\Variable\AVar
     {
 
         protected $types = [
@@ -123,8 +123,9 @@
         }
 
         /**
+         * Split a string at a given interval.
          *
-         * @param type $split_length
+         * @param int $split_length
          * @return array
          */
         public function split($split_length = 1)

@@ -182,7 +182,7 @@
         /**
          * Unset an offset.
          *
-         * @param type $offset
+         * @param scalar $offset
          */
         public function offsetUnset($offset)
         {
